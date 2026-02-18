@@ -7,6 +7,7 @@ import useStore from "@/store/useStore";
 import TemplateMapping from "../shared/TemplateMapping";
 import { CLIENTS, DOCUMENT_SUB_TYPES, DOCUMENT_SUB_TYPES_II, DOCUMENT_TYPES, TAGS, TEMPLATES } from "@/lib/constants";
 import useBulkUploadStore from "@/store/useBulkUploadStore";
+import { toast } from "sonner";
 
 const MetaDataTab = ({ tab }) => {
   const { selectedDocumentId, toggleItem, tabsList, selectedTabs } = useStore();
@@ -74,7 +75,7 @@ const MetaDataTab = ({ tab }) => {
               tags={TAGS}
               onSubmit={handleSubmit}
               showUploadButton={true}
-              showApplyToAll={true}
+              showApplyToAll={false}
               uploadButtonText="Upload"
             />
       </CardContent>

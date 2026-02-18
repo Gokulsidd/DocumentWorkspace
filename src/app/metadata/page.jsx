@@ -8954,27 +8954,27 @@ const MetadataPage = () => {
             console.warn("Templates array is empty or invalid");
           }
         } else {
-          // console.log("No user found, fetching current user");
+          console.log("No user found, fetching current user");
 
-          // // Fetch config
-          // const configRes = await fetch(
-          //   `${process.env.NEXT_PUBLIC_BASE_PATH_URL}/config.json`
-          // );
-          // const configData = await configRes.json();
-          // console.log(configData, "from configs");
-          // setConfigs(configData);
+          // Fetch config
+          const configRes = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_PATH_URL}/config.json`
+          );
+          const configData = await configRes.json();
+          console.log(configData, "from configs");
+          setConfigs(configData);
 
-          // // Fetch user
-          // const fetchedUser = await fetchUser();
+          // Fetch user
+          const fetchedUser = await fetchUser();
 
-          // if (fetchedUser?.AllData?.Templates) {
-          //   templatesData = fetchedUser.AllData.Templates;
-          // } else {
-          //   console.warn("No templates found in fetched user data");
-          // }
+          if (fetchedUser?.AllData?.Templates) {
+            templatesData = fetchedUser.AllData.Templates;
+          } else {
+            console.warn("No templates found in fetched user data");
+          }
         }
 
-        setTemplates(mockUserReponse.AllData.Templates);
+        setTemplates(templatesData);
 
       }
       catch (err) {

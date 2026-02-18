@@ -71,7 +71,7 @@ const TemplateSelector = ({ selectedTemplate, onSelectTemplate, templates }) => 
             }
           }}
           className={cn(
-            "w-full cursor-pointer select-none rounded-xl border px-4 py-3",
+            "w-full cursor-pointer select-none rounded-xl border px-2 py-1",
             "flex items-center justify-between",
             "hover:border-blue-400 bg-white transition-all",
             selectedTemplate
@@ -207,7 +207,7 @@ export default function TemplateMapping({
   onSubmit = () => {},
   showUploadButton = true,
   showApplyToAll = true,
-  uploadButtonText = "Upload",
+  uploadButtonText = "Save",
   className = "",
 }) {
   const { 
@@ -261,14 +261,17 @@ export default function TemplateMapping({
     }
 
     const fieldValues = getFieldValues();
+    console.log(fieldValues)
     onSubmit(fieldValues);
   };
-
+  
   return (
     <div className={cn(
       "w-full h-full flex flex-col overflow-hidden shadow-sm rounded-2xl p-4 bg-white",
       className
     )}>
+
+      
 
       {/* Template Selector */}
       <div className="shrink-0 mb-4">
@@ -285,8 +288,8 @@ export default function TemplateMapping({
 
       {/* Dynamic Fields - Only shown when template is selected */}
       {templateObject && (
-        <Card className="border-gray-200 bg-gray-50 rounded-2xl shadow-none flex-1 min-h-0 flex flex-col overflow-hidden mb-4">
-          <CardContent className="p-4 md:p-6 space-y-4 md:space-y-5 overflow-y-auto">
+        <Card className="border-gray-200 bg-gray-50 rounded-2xl shadow-none flex-1 max-h-[400px] min-h-0 flex flex-col overflow-hidden mb-4">
+          <CardContent className="p-4 md:p-6 space-y-4 md:space-y-5 max-h-[400px] overflow-y-auto">
             
             {/* Client Name List - Required */}
             <div className="space-y-2">
@@ -472,10 +475,10 @@ export default function TemplateMapping({
 
       {/* Footer Actions */}
       {(showUploadButton || showApplyToAll) && (
-        <div className="shrink-0">
-          <Card className="rounded-2xl bg-white shadow-none border border-gray-200">
-            <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 md:py-4">
-
+        <div className="shrink-0 mb-2">
+          <Card className="rounded-2xl bg-white shadow-none">
+            <CardContent className={`flex flex-col sm:flex-row items-center ${(showUploadButton && showApplyToAll) ? 'justify-between':'justify-end' } gap-3`}>
+    
               {/* Left Section */}
               {showApplyToAll && (
                 <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -490,7 +493,7 @@ export default function TemplateMapping({
                       Apply to all
                     </span>
                   </label>
-
+    
                   {/* Info */}
                   <div className="flex items-center gap-1 text-xs text-gray-500">
                     <Info className="h-3.5 w-3.5 text-gray-400" />
@@ -498,7 +501,7 @@ export default function TemplateMapping({
                   </div>
                 </div>
               )}
-
+    
               {/* Right Section */}
               {showUploadButton && (
                 <Button
@@ -508,11 +511,12 @@ export default function TemplateMapping({
                   {uploadButtonText}
                 </Button>
               )}
-
+    
             </CardContent>
           </Card>
         </div>
       )}
+
 
     </div>
   );
