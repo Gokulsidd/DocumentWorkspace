@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import UploadArea from "./upload-area";
-import TemplateMapping from "./template-mapping";
+import TemplateMappingWrapper from "./template-mapping-wrapper";
 import { toast } from "sonner";
 import useBulkUploadStore from "@/store/useBulkUploadStore";
 import { Upload as UploadIcon, Loader2 } from "lucide-react";
@@ -69,7 +69,7 @@ export default function UploadScreen() {
             {/* Right Column - Template Mapping (only visible when files selected) */}
             {(hasFiles || creatingDocType) && (
               <div className="w-1/2 h-full transition-all duration-300 animate-in fade-in slide-in-from-right-5">
-                <TemplateMapping />
+                <TemplateMappingWrapper />
               </div>
             )}
           </div>

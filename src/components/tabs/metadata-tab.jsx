@@ -4,9 +4,13 @@ import { SquareCode, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useMemo, useState } from "react";
 import useStore from "@/store/useStore";
+import TemplateMapping from "../shared/TemplateMapping";
+import { CLIENTS, DOCUMENT_SUB_TYPES, DOCUMENT_SUB_TYPES_II, DOCUMENT_TYPES, TAGS, TEMPLATES } from "@/lib/constants";
+import useBulkUploadStore from "@/store/useBulkUploadStore";
 
 const MetaDataTab = ({ tab }) => {
   const { selectedDocumentId, toggleItem, tabsList, selectedTabs } = useStore();
+  const { uploadFiles, validateUpload } = useBulkUploadStore();
 
   const iframeUrl = useMemo(() => {
     if (!selectedDocumentId)
@@ -18,6 +22,23 @@ const MetaDataTab = ({ tab }) => {
     const metadataTab = tabsList?.find((item) => item.name === "Metadata");
     if (metadataTab) {
       toggleItem("options", metadataTab);
+    }
+  };
+
+
+  const handleSubmit = async (fieldValues) => {
+    console.log('Template mapping values:', fieldValues);
+    
+    // Validate upload
+    if (!validateUpload()) {
+      toast.error('Please select files to upload');
+      return;
+    }
+    
+    // Upload files
+    const success = await uploadFiles();
+    if (success) {
+      toast.success('Files uploaded successfully!');
     }
   };
 
@@ -44,10 +65,18 @@ const MetaDataTab = ({ tab }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="w-full h-full flex-1 p-0">
-        <iframe
-          src={iframeUrl}
-          className="w-full h-full border-none min-h-[500px] rounded-b-2xl"
-        />
+        <TemplateMapping
+              templates={TEMPLATES}
+              clients={CLIENTS}
+              documentTypes={DOCUMENT_TYPES}
+              documentSubTypes={DOCUMENT_SUB_TYPES}
+              documentSubTypesII={DOCUMENT_SUB_TYPES_II}
+              tags={TAGS}
+              onSubmit={handleSubmit}
+              showUploadButton={true}
+              showApplyToAll={true}
+              uploadButtonText="Upload"
+            />
       </CardContent>
     </Card>
   );

@@ -63,6 +63,81 @@ export const formatDateTimeForPayload = (date) => {
 };
 
 
+// templating mapping mock data
+export const TEMPLATES = [
+  { 
+    id: "client-document", 
+    name: "Client Document", 
+    description: "Standard client documentation template",
+    fields: 8 
+  },
+  { 
+    id: "vendor-document", 
+    name: "Vendor Document", 
+    description: "Vendor-related documents and invoices",
+    fields: 8 
+  },
+  { 
+    id: "internal-document", 
+    name: "Internal Document", 
+    description: "Internal company documents",
+    fields: 8 
+  },
+  { 
+    id: "financial-report", 
+    name: "Financial Report", 
+    description: "Financial statements and reports",
+    fields: 8 
+  },
+  { 
+    id: "legal-contract", 
+    name: "Legal Contract", 
+    description: "Legal agreements and contracts",
+    fields: 8 
+  },
+];
+
+// Mock client data
+export const CLIENTS = [
+  { id: "client1", name: "Acme Corporation", clientId: "CLI001" },
+  { id: "client2", name: "TechStart Inc", clientId: "CLI002" },
+  { id: "client3", name: "Global Industries", clientId: "CLI003" },
+];
+
+// Document type options
+export const DOCUMENT_TYPES = [
+  { id: "invoice", name: "Invoice" },
+  { id: "receipt", name: "Receipt" },
+  { id: "contract", name: "Contract" },
+  { id: "report", name: "Report" },
+  { id: "memo", name: "Memo" },
+];
+
+// Document sub type options
+export const DOCUMENT_SUB_TYPES = [
+  { id: "financial", name: "Financial" },
+  { id: "legal", name: "Legal" },
+  { id: "operational", name: "Operational" },
+  { id: "administrative", name: "Administrative" },
+];
+
+// Document sub type II options
+export const DOCUMENT_SUB_TYPES_II = [
+  { id: "internal", name: "Internal" },
+  { id: "external", name: "External" },
+  { id: "confidential", name: "Confidential" },
+  { id: "public", name: "Public" },
+];
+
+// Tags options (optional)
+export const TAGS = [
+  { id: "urgent", name: "Urgent" },
+  { id: "review", name: "Review" },
+  { id: "approved", name: "Approved" },
+];
+
+
+
 
 
 export const mockCollections = [
